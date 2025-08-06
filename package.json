@@ -1,0 +1,25 @@
+{
+  "name": "pokedex",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "npx tsc",
+    "start": "node dist/main.js",
+    "dev": "npx tsc && node dist/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sithusan/pokedex.git"
+  },
+  "author": "Si Thu San",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sithusan/pokedex/issues"
+  },
+  "homepage": "https://github.com/sithusan/pokedex#readme",
+  "devDependencies": {
+    "@types/node": "^24.2.0",
+    "typescript": "^5.9.2"
+  }
+}
