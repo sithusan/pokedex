@@ -17,7 +17,7 @@ export const startREPL = (state: State) => {
 
         const cleanedInput = cleanInput(input);
 
-        const requestedCommand = state.commands[cleanedInput.at(0)!]; // There is length check already.
+        const requestedCommand = state.commands[cleanedInput.shift()!]; // There is length check already.
 
         if (requestedCommand === undefined) {
             console.log('Unknown command');
@@ -26,7 +26,7 @@ export const startREPL = (state: State) => {
         }
 
         try {
-            await requestedCommand.callback(state);
+            await requestedCommand.callback(state, ...cleanedInput);
         } catch (err: unknown) {
             if (err instanceof Error) {
                 console.log(err.message);

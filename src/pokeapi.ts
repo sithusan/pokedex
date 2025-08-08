@@ -18,6 +18,18 @@ export class PokeAPI {
 
         const url = pageURL ?? `${this.baseURL}/location-area`;
 
+        return this.fetchWithCache<ShallowLocations>(url);
+    }
+
+    async fetchLocation(locationName: string): Promise<Location> {
+
+        const url = `${this.baseURL}/location-area/${locationName}`;
+
+        return this.fetchWithCache<Location>(url);
+    }
+
+    private async fetchWithCache<T>(url: string): Promise<T> {
+
         const cacheResult = this.cache.get(url);
 
         if (
@@ -29,16 +41,7 @@ export class PokeAPI {
         }
 
         // already ensure that cache exists.
-        return this.cache.get(url)!.val as ShallowLocations;
-    }
-
-    async fetchLocation(locationName: string): Promise<Location> {
-
-        const url = `${this.baseURL}/${locationName}`;
-
-        const response = await fetch(url);
-
-        return response.json();
+        return this.cache.get(url)!.val as T;
     }
 
 }
@@ -54,5 +57,39 @@ export type ShallowLocations = {
 };
 
 export type Location = {
-    // add properties here
+    pokemon_encounters: PokemonEncounter[]
 };
+
+type PokemonEncounter = {
+    pokemon: Pokemon
+    // version_details: VersionDetail[]
+}
+
+type Pokemon = {
+    name: string
+    url: string
+}
+
+// type VersionDetail {
+//     encounter_details: EncounterDetail[]
+//     max_chance: number
+//     version: Version
+// }
+
+// type EncounterDetail {
+//     chance: number
+//     condition_values: any[]
+//     max_level: number
+//     method: Method
+//     min_level: number
+// }
+
+// type Method {
+//     name: string
+//     url: string
+// }
+
+// type Version {
+//     name: string
+//     url: string
+// }
