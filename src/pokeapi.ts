@@ -372,7 +372,7 @@ type GenerationV = {
     "black-white": BlackWhite
 }
 
-export type BlackWhite = {
+type BlackWhite = {
     animated: Animated
     back_default: string
     back_female: any
@@ -384,7 +384,7 @@ export type BlackWhite = {
     front_shiny_female: any
 }
 
-export type Animated = {
+type Animated = {
     back_default: string
     back_female: any
     back_shiny: string
@@ -395,68 +395,68 @@ export type Animated = {
     front_shiny_female: any
 }
 
-export type GenerationVi = {
+type GenerationVi = {
     "omegaruby-alphasapphire": OmegarubyAlphasapphire
     "x-y": XY
 }
 
-export type OmegarubyAlphasapphire = {
+type OmegarubyAlphasapphire = {
     front_default: string
     front_female: any
     front_shiny: string
     front_shiny_female: any
 }
 
-export type XY = {
+type XY = {
     front_default: string
     front_female: any
     front_shiny: string
     front_shiny_female: any
 }
 
-export type GenerationVii = {
+type GenerationVii = {
     icons: Icons
     "ultra-sun-ultra-moon": UltraSunUltraMoon
 }
 
-export type Icons = {
+type Icons = {
     front_default: string
     front_female: any
 }
 
-export type UltraSunUltraMoon = {
+type UltraSunUltraMoon = {
     front_default: string
     front_female: any
     front_shiny: string
     front_shiny_female: any
 }
 
-export type GenerationViii = {
+type GenerationViii = {
     icons: Icons2
 }
 
-export type Icons2 = {
+type Icons2 = {
     front_default: string
     front_female: any
 }
 
-export type Stat = {
+type Stat = {
     base_stat: number
     effort: number
     stat: Stat2
 }
 
-export type Stat2 = {
+type Stat2 = {
     name: string
     url: string
 }
 
-export type Type = {
+type Type = {
     slot: number
     type: Type2
 }
 
-export type Type2 = {
+type Type2 = {
     name: string
     url: string
 }
