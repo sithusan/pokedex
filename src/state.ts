@@ -3,14 +3,16 @@ import { stdin, stdout } from "process";
 import { commandExit } from "./command_exit.js";
 import { commandHelp } from "./command_help.js";
 import { commandMap } from "./command_map.js";
-import { PokeAPI } from "./pokeapi.js";
+import { PokeAPI, Pokemon } from "./pokeapi.js";
 import { commandMapBack } from "./command_map_back.js";
 import { commandExplore } from "./command_explore.js";
+import { commandCatch } from "./command_catch.js";
 
 export type State = {
     readline: Interface;
     commands: Record<string, CLICommand>;
     pokeapi: PokeAPI,
+    pokedex: Record<string, Pokemon>
     nextLocationsURL: string | null,
     prevLocationsURL: string | null,
 }
@@ -54,6 +56,11 @@ export const initState = (): State => {
             name: "explore",
             description: "Explore in given location",
             callback: commandExplore
+        },
+        catch: {
+            name: "catch",
+            description: "Catch the given pokemon",
+            callback: commandCatch,
         }
     }
 
@@ -63,6 +70,7 @@ export const initState = (): State => {
         readline: readline,
         commands: commands,
         pokeapi: pokeapi,
+        pokedex: {},
         nextLocationsURL: null,
         prevLocationsURL: null
     }
