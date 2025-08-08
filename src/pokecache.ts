@@ -34,7 +34,7 @@ export class Cache {
 
     private reap(): void {
         this.cache.forEach((val: CacheEntry<any>, key: string) => {
-            if (val.createdAt > Date.now() - this.interval) {
+            if (val.createdAt < Date.now() - this.interval) {
                 this.cache.delete(key);
             }
         })
