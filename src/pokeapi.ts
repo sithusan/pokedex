@@ -28,7 +28,7 @@ export class PokeAPI {
         return this.fetchWithCache<Location>(url);
     }
 
-    async caughPokemon(pokemonName: string): Promise<Pokemon> {
+    async catchPokemon(pokemonName: string): Promise<Pokemon> {
 
         const url = `${this.baseURL}/pokemon/${pokemonName}`;
 

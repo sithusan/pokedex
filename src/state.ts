@@ -8,6 +8,7 @@ import { commandMapBack } from "./command_map_back.js";
 import { commandExplore } from "./command_explore.js";
 import { commandCatch } from "./command_catch.js";
 import { commandInspect } from "./command_inspect.js";
+import { commandPokedex } from "./command_pokedex.js";
 
 export type State = {
     readline: Interface;
@@ -67,6 +68,11 @@ export const initState = (): State => {
             name: "inspect",
             description: "Inspect the given pokemon",
             callback: commandInspect,
+        },
+        pokedex: {
+            name: "pokedex",
+            description: "See the caught pokemons",
+            callback: commandPokedex,
         }
     }
 

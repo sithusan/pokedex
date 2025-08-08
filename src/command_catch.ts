@@ -10,11 +10,14 @@ export const commandCatch = async (state: State, ...args: string[]): Promise<voi
 
     console.log(`Throwing a Pokeball at ${pokemonName}...`);
 
-    const response = await state.pokeapi.caughPokemon(pokemonName);
+    const response = await state.pokeapi.catchPokemon(pokemonName);
 
-    const userChance = Math.floor(Math.random() * 100);
+    const userChance = Math.floor(Math.random() * 300);
 
     if (userChance >= response.base_experience) {
         state.pokedex[response.name] = response;
+
+        console.log(`${response.name} was caught!`);
+        console.log("You may now inspect with the inspect command");
     }
 }
