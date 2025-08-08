@@ -11,79 +11,78 @@ import { commandInspect } from "./command_inspect.js";
 import { commandPokedex } from "./command_pokedex.js";
 
 export type State = {
-    readline: Interface;
-    commands: Record<string, CLICommand>;
-    pokeapi: PokeAPI,
-    pokedex: Record<string, Pokemon>
-    nextLocationsURL: string | null,
-    prevLocationsURL: string | null,
-}
+  readline: Interface;
+  commands: Record<string, CLICommand>;
+  pokeapi: PokeAPI;
+  pokedex: Record<string, Pokemon>;
+  nextLocationsURL: string | null;
+  prevLocationsURL: string | null;
+};
 
 export type CLICommand = {
-    name: string;
-    description: string;
-    callback: (state: State, ...args: string[]) => Promise<void>;
-}
+  name: string;
+  description: string;
+  callback: (state: State, ...args: string[]) => Promise<void>;
+};
 
 export const initState = (): State => {
+  const readline = createInterface({
+    input: stdin,
+    output: stdout,
+    prompt: "Pokedex > ",
+  });
 
-    const readline = createInterface({
-        input: stdin,
-        output: stdout,
-        prompt: 'Pokedex > ',
-    })
+  const commands: Record<string, CLICommand> = {
+    exit: {
+      name: "exit",
+      description: "Exists the pokedex",
+      callback: commandExit,
+    },
+    help: {
+      name: "help",
+      description: "Displays a help message",
+      callback: commandHelp,
+    },
+    map: {
+      name: "map",
+      description: "Displays maps",
+      callback: commandMap,
+    },
+    mapb: {
+      name: "mapb",
+      description: "Displays previous maps",
+      callback: commandMapBack,
+    },
+    explore: {
+      name: "explore",
+      description: "Explore in given location",
+      callback: commandExplore,
+    },
+    catch: {
+      name: "catch",
+      description: "Catch the given pokemon",
+      callback: commandCatch,
+    },
+    inspect: {
+      name: "inspect",
+      description: "Inspect the given pokemon",
+      callback: commandInspect,
+    },
+    pokedex: {
+      name: "pokedex",
+      description: "See the caught pokemons",
+      callback: commandPokedex,
+    },
+  };
 
-    const commands: Record<string, CLICommand> = {
-        exit: {
-            name: "exit",
-            description: "Exists the pokedex",
-            callback: commandExit,
-        },
-        help: {
-            name: "help",
-            description: "Displays a help message",
-            callback: commandHelp,
-        },
-        map: {
-            name: "map",
-            description: "Displays maps",
-            callback: commandMap,
-        },
-        mapb: {
-            name: "mapb",
-            description: "Displays previous maps",
-            callback: commandMapBack,
-        },
-        explore: {
-            name: "explore",
-            description: "Explore in given location",
-            callback: commandExplore
-        },
-        catch: {
-            name: "catch",
-            description: "Catch the given pokemon",
-            callback: commandCatch,
-        },
-        inspect: {
-            name: "inspect",
-            description: "Inspect the given pokemon",
-            callback: commandInspect,
-        },
-        pokedex: {
-            name: "pokedex",
-            description: "See the caught pokemons",
-            callback: commandPokedex,
-        }
-    }
+  const pokeapi = new PokeAPI();
 
-    const pokeapi = new PokeAPI();
-
-    return {
-        readline: readline,
-        commands: commands,
-        pokeapi: pokeapi,
-        pokedex: {},
-        nextLocationsURL: null,
-        prevLocationsURL: null
-    }
-}
+  return {
+    readline: readline,
+    commands: commands,
+    pokeapi: pokeapi,
+    pokedex: {},
+    nextLocationsURL: null,
+    prevLocationsURL: null,
+  };
+};
