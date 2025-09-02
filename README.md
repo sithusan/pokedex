@@ -25,8 +25,8 @@ Pokédex CLI is a simple terminal-based adventure where you explore locations, e
 
 🛠 **Installation**
 ```bash
-git clone https://github.com/sithusan/pokedex-cli.git
-cd pokedex-cli
+git clone https://github.com/sithusan/pokedex.git
+cd pokedex
 npm install
 npm run start
 ``` 
